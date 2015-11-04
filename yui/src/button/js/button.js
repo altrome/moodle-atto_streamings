@@ -57,13 +57,17 @@ var TEMPLATE = '' +
     '<form class="atto_form">' +
         '<div id="{{elementid}}_{{innerform}}" class="mdl-align">' +
             '<label for="{{elementid}}_{{VIDEOCONTROL}}">{{get_string "entervideo" component}}</label>' +
-            '<input class="{{CSS.VIDEOCONTROL}} id="{{elementid}}_{{VIDEOCONTROL}}" name="{{elementid}}_{{VIDEOCONTROL}}" value="{{defaultvideo}}" />' +
+            '<input class="{{CSS.VIDEOCONTROL}} id="{{elementid}}_{{VIDEOCONTROL}}" ' +
+                'name="{{elementid}}_{{VIDEOCONTROL}}" value="{{defaultvideo}}" />' +
             '<label for="{{elementid}}_{{RTMPCONTROL}}">{{get_string "enterrtmp" component}}</label>' +
-            '<input class="{{CSS.RTMPCONTROL}} id="{{elementid}}_{{RTMPCONTROL}}" name="{{elementid}}_{{RTMPCONTROL}}" value="{{defaultrtmp}}" />' +
+            '<input class="{{CSS.RTMPCONTROL}} id="{{elementid}}_{{RTMPCONTROL}}" ' +
+                'name="{{elementid}}_{{RTMPCONTROL}}" value="{{defaultrtmp}}" />' +
             '<label for="{{elementid}}_{{PLAYLISTCONTROL}}">{{get_string "enterplaylist" component}}</label>' +
-            '<input class="{{CSS.PLAYLISTCONTROL}} id="{{elementid}}_{{PLAYLISTCONTROL}}" name="{{elementid}}_{{PLAYLISTCONTROL}}" value="{{defaultplaylist}}" />' +
+            '<input class="{{CSS.PLAYLISTCONTROL}} id="{{elementid}}_{{PLAYLISTCONTROL}}" ' +
+                'name="{{elementid}}_{{PLAYLISTCONTROL}}" value="{{defaultplaylist}}" />' +
             '<label for="{{elementid}}_{{WEBCONTROL}}">{{get_string "enterweb" component}}</label>' +
-            '<input class="{{CSS.WEBCONTROL}} id="{{elementid}}_{{WEBCONTROL}}" name="{{elementid}}_{{WEBCONTROL}}" value="{{defaultweb}}" />' +
+            '<input class="{{CSS.WEBCONTROL}} id="{{elementid}}_{{WEBCONTROL}}" ' +
+                'name="{{elementid}}_{{WEBCONTROL}}" value="{{defaultweb}}" />' +
             '<button class="{{CSS.INPUTSUBMIT}}">{{get_string "insert" component}}</button>' +
         '</div>' +
     '</form>';
@@ -184,7 +188,7 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
      * @return {Node} The content to place in the dialogue.
      * @private
      */
-    _getFormContent: function(clickedicon) {
+    _getFormContent: function() {
         var template = Y.Handlebars.compile(TEMPLATE),
             content = Y.Node.create(template({
                 elementid: this.get('host').get('elementid'),
@@ -197,7 +201,7 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
                 defaultvideo: this.get('defaultvideo'),
                 defaultrtmp: this.get('defaultrtmp'),
                 defaultplaylist: this.get('defaultplaylist'),
-                defaultweb: this.get('defaultweb'),
+                defaultweb: this.get('defaultweb')
             }));
 
         this._form = content;
