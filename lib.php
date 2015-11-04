@@ -71,7 +71,7 @@ function atto_streamings_params_for_js($elementid, $options, $fpoptions) {
         $params['defaultvideo'] = get_config('atto_streamings','defaultvideo');
         
         //add our default rtmp
-        $params['defaultrtmp'] = get_config('atto_streamings','defaultrtmpo');
+        $params['defaultrtmp'] = get_config('atto_streamings','defaultrtmp');
         
         //add our default playlist
         $params['defaultplaylist'] = get_config('atto_streamings','defaultplaylist');

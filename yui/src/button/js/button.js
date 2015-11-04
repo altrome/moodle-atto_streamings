@@ -66,7 +66,6 @@ var TEMPLATE = '' +
             '<input class="{{CSS.WEBCONTROL}} id="{{elementid}}_{{WEBCONTROL}}" name="{{elementid}}_{{WEBCONTROL}}" value="{{defaultweb}}" />' +
             '<button class="{{CSS.INPUTSUBMIT}}">{{get_string "insert" component}}</button>' +
         '</div>' +
-        'icon: {{clickedicon}}'  +
     '</form>';
    
 Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
@@ -199,7 +198,6 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
                 defaultrtmp: this.get('defaultrtmp'),
                 defaultplaylist: this.get('defaultplaylist'),
                 defaultweb: this.get('defaultweb'),
-                clickedicon: clickedicon
             }));
 
         this._form = content;
@@ -248,24 +246,25 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
         }
         
         var insert_template =
-            '<div id="videoStream"></div>' +
-            '<script>' +
-                'var playerInstance = jwplayer("videoStream");' +
-                'playerInstance.setup({' +
-                    'playlist: [{' +
-                        'sources: [{' +
-                            'file: "' + webcontrol.get('value') + '/' + playlistcontrol.get('value') + '"' +
-                        '},{' +
-                            'file: "' + rtmpcontrol.get('value') + '/cfx/st/mp4:' + videocontrol.get('value') + '"' +
-                        '}]' +
-                    '}],' +
-                '});' +
-                'if (mobileAndTabletcheck()) {' +
-                    'playerInstance.setup({' +
-                        'width: "100%",' +
-                        'stretching: "none",' +
-                        'file: "' + webcontrol.get('value') + playlistcontrol.get('value') + '"' +
-                    '});' +
+            '<div id="videoStream"></div>\n' +
+            '<script>\n' +
+                'var playerInstance = jwplayer("videoStream");\n' +
+                'playerInstance.setup({\n' +
+                    'playlist: [{\n' +
+                        'sources: [{\n' +
+                            'file: "' + webcontrol.get('value') + '/' + playlistcontrol.get('value') + '"\n' +
+                        '},{\n' +
+                            'file: "' + rtmpcontrol.get('value') + '/cfx/st/mp4:' + videocontrol.get('value') + '"\n' +
+                        '}]\n' +
+                    '}]\n' +
+                '});\n' +
+                'if (mobileAndTabletcheck()) {\n' +
+                    'playerInstance.setup({\n' +
+                        'width: "100%",\n' +
+                        'stretching: "none",\n' +
+                        'file: "' + webcontrol.get('value') + playlistcontrol.get('value') + '"\n' +
+                    '});\n' +
+                '}\n' +
             '</script>';
 
         this.editor.focus();
