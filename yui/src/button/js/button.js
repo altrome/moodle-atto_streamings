@@ -262,7 +262,7 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
                     'playerInstance.setup({\n' +
                         'width: "100%",\n' +
                         'stretching: "none",\n' +
-                        'file: "' + webcontrol.get('value') + playlistcontrol.get('value') + '"\n' +
+                        'file: "' + webcontrol.get('value') + '/' + playlistcontrol.get('value') + '"\n' +
                     '});\n' +
                 '}\n' +
             '</script>';
