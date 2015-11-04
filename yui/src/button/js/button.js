@@ -32,28 +32,43 @@
  */
 
 var COMPONENTNAME = 'atto_streamings';
-var FLAVORCONTROL = 'streamings_flavor';
+var VIDEOCONTROL = 'streamings_video';
+var RTMPCONTROL = 'streamings_rtmp';
+var PLAYLISTCONTROL = 'streamings_playlist';
+var WEBCONTROL = 'streamings_web';
 var LOGNAME = 'atto_streamings';
 
 var CSS = {
         INPUTSUBMIT: 'atto_media_urlentrysubmit',
         INPUTCANCEL: 'atto_media_urlentrycancel',
-        FLAVORCONTROL: 'flavorcontrol'
+        VIDEOCONTROL: 'videocontrol',
+        RTMPCONTROL: 'rtmpcontrol',
+        PLAYLISTCONTROL: 'playlistcontrol',
+        WEBCONTROL: 'webcontrol'
     },
     SELECTORS = {
-        FLAVORCONTROL: '.flavorcontrol'
+        VIDEOCONTROL: '.videocontrol',
+        RTMPCONTROL: '.rtmpcontrol',
+        PLAYLISTCONTROL: '.playlistcontrol',
+        WEBCONTROL: '.webcontrol'
     };
 
 var TEMPLATE = '' +
     '<form class="atto_form">' +
         '<div id="{{elementid}}_{{innerform}}" class="mdl-align">' +
-            '<label for="{{elementid}}_{{FLAVORCONTROL}}">{{get_string "enterflavor" component}}</label>' +
-            '<input class="{{CSS.FLAVORCONTROL}} id="{{elementid}}_{{FLAVORCONTROL}}" name="{{elementid}}_{{FLAVORCONTROL}}" value="{{defaultflavor}}" />' +
+            '<label for="{{elementid}}_{{VIDEOCONTROL}}">{{get_string "entervideo" component}}</label>' +
+            '<input class="{{CSS.VIDEOCONTROL}} id="{{elementid}}_{{VIDEOCONTROL}}" name="{{elementid}}_{{VIDEOCONTROL}}" value="{{defaultvideo}}" />' +
+            '<label for="{{elementid}}_{{RTMPCONTROL}}">{{get_string "enterrtmp" component}}</label>' +
+            '<input class="{{CSS.RTMPCONTROL}} id="{{elementid}}_{{RTMPCONTROL}}" name="{{elementid}}_{{RTMPCONTROL}}" value="{{defaultrtmp}}" />' +
+            '<label for="{{elementid}}_{{PLAYLISTCONTROL}}">{{get_string "enterplaylist" component}}</label>' +
+            '<input class="{{CSS.PLAYLISTCONTROL}} id="{{elementid}}_{{PLAYLISTCONTROL}}" name="{{elementid}}_{{PLAYLISTCONTROL}}" value="{{defaultplaylist}}" />' +
+            '<label for="{{elementid}}_{{WEBCONTROL}}">{{get_string "enterweb" component}}</label>' +
+            '<input class="{{CSS.WEBCONTROL}} id="{{elementid}}_{{WEBCONTROL}}" name="{{elementid}}_{{WEBCONTROL}}" value="{{defaultweb}}" />' +
             '<button class="{{CSS.INPUTSUBMIT}}">{{get_string "insert" component}}</button>' +
         '</div>' +
         'icon: {{clickedicon}}'  +
     '</form>';
-
+   
 Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
 
   
@@ -68,7 +83,7 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
             return;
         }
 
-        var twoicons = ['iconone', 'icontwo'];
+        var twoicons = ['iconone'];
 
         Y.Array.each(twoicons, function(theicon) {
             // Add the streamings icon/buttons
@@ -84,14 +99,47 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
     },
 
     /**
-     * Get the id of the flavor control where we store the ice cream flavor
+     * Get the id of the video control where we store the ice cream video
      *
-     * @method _getFlavorControlName
-     * @return {String} the name/id of the flavor form field
+     * @method _getVideoControlName
+     * @return {String} the name/id of the video form field
      * @private
      */
-    _getFlavorControlName: function(){
-        return(this.get('host').get('elementid') + '_' + FLAVORCONTROL);
+    _getVideoControlName: function(){
+        return(this.get('host').get('elementid') + '_' + VIDEOCONTROL);
+    },
+    
+    /**
+     * Get the id of the video control where we store the ice cream video
+     *
+     * @method _getRtmpControlName
+     * @return {String} the name/id of the video form field
+     * @private
+     */
+    _getRtmpControlName: function(){
+        return(this.get('host').get('elementid') + '_' + RTMPCONTROL);
+    },
+    
+    /**
+     * Get the id of the video control where we store the ice cream video
+     *
+     * @method _getPlaylistControlName
+     * @return {String} the name/id of the video form field
+     * @private
+     */
+    _getPlaylistControlName: function(){
+        return(this.get('host').get('elementid') + '_' + PLAYLISTCONTROL);
+    },
+    
+    /**
+     * Get the id of the video control where we store the ice cream video
+     *
+     * @method _getWebControlName
+     * @return {String} the name/id of the video form field
+     * @private
+     */
+    _getWebControlName: function(){
+        return(this.get('host').get('elementid') + '_' + PLAYLISTCONTROL);
     },
 
      /**
@@ -142,9 +190,15 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
             content = Y.Node.create(template({
                 elementid: this.get('host').get('elementid'),
                 CSS: CSS,
-                FLAVORCONTROL: FLAVORCONTROL,
+                VIDEOCONTROL: VIDEOCONTROL,
+                RTMPCONTROL: RTMPCONTROL,
+                PLAYLISTCONTROL: PLAYLISTCONTROL,
+                WEBCONTROL: WEBCONTROL,
                 component: COMPONENTNAME,
-                defaultflavor: this.get('defaultflavor'),
+                defaultvideo: this.get('defaultvideo'),
+                defaultrtmp: this.get('defaultrtmp'),
+                defaultplaylist: this.get('defaultplaylist'),
+                defaultweb: this.get('defaultweb'),
                 clickedicon: clickedicon
             }));
 
@@ -164,16 +218,58 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
             focusAfterHide: null
         }).hide();
 
-        var flavorcontrol = this._form.one(SELECTORS.FLAVORCONTROL);
+        var videocontrol = this._form.one(SELECTORS.VIDEOCONTROL);
+        var rtmpcontrol = this._form.one(SELECTORS.RTMPCONTROL);
+        var playlistcontrol = this._form.one(SELECTORS.PLAYLISTCONTROL);
+        var webcontrol = this._form.one(SELECTORS.WEBCONTROL);
 
         // If no file is there to insert, don't do it.
-        if (!flavorcontrol.get('value')){
-            Y.log('No flavor control or value could be found.', 'warn', LOGNAME);
+        if (!videocontrol.get('value')){
+            Y.log('No video control or value could be found.', 'warn', LOGNAME);
             return;
         }
+        
+        // If no file is there to insert, don't do it.
+        if (!rtmpcontrol.get('value')){
+            Y.log('No rtmp control or value could be found.', 'warn', LOGNAME);
+            return;
+        }
+        
+        // If no file is there to insert, don't do it.
+        if (!playlistcontrol.get('value')){
+            Y.log('No playlist control or value could be found.', 'warn', LOGNAME);
+            return;
+        }
+        
+        // If no file is there to insert, don't do it.
+        if (!webcontrol.get('value')){
+            Y.log('No web control or value could be found.', 'warn', LOGNAME);
+            return;
+        }
+        
+        var insert_template =
+            '<div id="videoStream"></div>' +
+            '<script>' +
+                'var playerInstance = jwplayer("videoStream");' +
+                'playerInstance.setup({' +
+                    'playlist: [{' +
+                        'sources: [{' +
+                            'file: "' + webcontrol.get('value') + '/' + playlistcontrol.get('value') + '"' +
+                        '},{' +
+                            'file: "' + rtmpcontrol.get('value') + '/cfx/st/mp4:' + videocontrol.get('value') + '"' +
+                        '}]' +
+                    '}],' +
+                '});' +
+                'if (mobileAndTabletcheck()) {' +
+                    'playerInstance.setup({' +
+                        'width: "100%",' +
+                        'stretching: "none",' +
+                        'file: "' + webcontrol.get('value') + playlistcontrol.get('value') + '"' +
+                    '});' +
+            '</script>';
 
         this.editor.focus();
-        this.get('host').insertContentAtFocusPoint(flavorcontrol.get('value'));
+        this.get('host').insertContentAtFocusPoint(insert_template);
         this.markUpdated();
 
     }
@@ -186,7 +282,19 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
 			value: null
 		},
 
-		defaultflavor: {
+		defaultvideo: {
+			value: ''
+		},
+		
+		defaultrtmp: {
+			value: ''
+		},
+		
+		defaultplaylist: {
+			value: ''
+		},
+		
+		defaultweb: {
 			value: ''
 		}
 	}

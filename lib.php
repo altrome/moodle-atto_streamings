@@ -34,7 +34,10 @@ function atto_streamings_strings_for_js() {
 
     $PAGE->requires->strings_for_js(array('insert',
                                           'cancel',
-                                          'enterflavor',
+                                          'entervideo',
+                                          'enterrtmp',
+                                          'enterplaylist',
+                                          'enterweb',
                                           'dialogtitle'),
                                     'atto_streamings');
 }
@@ -64,8 +67,17 @@ function atto_streamings_params_for_js($elementid, $options, $fpoptions) {
         //add our disabled param
         $params['disabled'] = $disabled;
         
-        //add our default flavor
-        $params['defaultflavor'] = get_config('atto_streamings','defaultflavor');
+        //add our default video
+        $params['defaultvideo'] = get_config('atto_streamings','defaultvideo');
+        
+        //add our default rtmp
+        $params['defaultrtmp'] = get_config('atto_streamings','defaultrtmpo');
+        
+        //add our default playlist
+        $params['defaultplaylist'] = get_config('atto_streamings','defaultplaylist');
+        
+        //add our default web
+        $params['defaultweb'] = get_config('atto_streamings','defaultweb');
 
     return $params;
 }
