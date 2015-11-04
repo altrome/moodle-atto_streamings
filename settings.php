@@ -30,7 +30,7 @@ $ADMIN->add('editoratto', new admin_category('atto_streamings', new lang_string(
 $settings = new admin_settingpage('atto_streamings_settings', new lang_string('settings', 'atto_streamings'));
 if ($ADMIN->fulltree) {
 	// An option setting
-	$settings->add(new admin_setting_configtext('atto_streamings/defaultweb', 
+	$settings->add(new admin_setting_configtext('atto_streamings/defaultrtmp', 
 		get_string('defaultrtmp', 'atto_streamings'), '', 'rtmp://xxxxxxxx.cloudfront.net', PARAM_TEXT));
 	$settings->add(new admin_setting_configtext('atto_streamings/defaultweb', 
 		get_string('defaultweb', 'atto_streamings'), '', 'http://yyyyyyyy.cloudfront.net', PARAM_TEXT));
