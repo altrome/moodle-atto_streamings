@@ -252,7 +252,7 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
         }
         
         var insert_template =
-            '<div id="videoStream"></div>\n' +
+            '<div class="videoStream">Video Stream</div>\n' +
             '<script>\n' +
                 'var playerInstance = jwplayer("videoStream");\n' +
                 'playerInstance.setup({\n' +
