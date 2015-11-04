@@ -14,26 +14,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
- * @package    atto_NEWTEMPLATE
+ * @package    atto_streamings
  * @copyright  COPYRIGHTINFO
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
- * @module moodle-atto_NEWTEMPLATE-button
+ * @module moodle-atto_streamings-button
  */
 
 /**
- * Atto text editor NEWTEMPLATE plugin.
+ * Atto text editor streamings plugin.
  *
- * @namespace M.atto_NEWTEMPLATE
+ * @namespace M.atto_streamings
  * @class button
  * @extends M.editor_atto.EditorPlugin
  */
 
-var COMPONENTNAME = 'atto_NEWTEMPLATE';
-var FLAVORCONTROL = 'NEWTEMPLATE_flavor';
-var LOGNAME = 'atto_NEWTEMPLATE';
+var COMPONENTNAME = 'atto_streamings';
+var FLAVORCONTROL = 'streamings_flavor';
+var LOGNAME = 'atto_streamings';
 
 var CSS = {
         INPUTSUBMIT: 'atto_media_urlentrysubmit',
@@ -54,7 +54,7 @@ var TEMPLATE = '' +
         'icon: {{clickedicon}}'  +
     '</form>';
 
-Y.namespace('M.atto_NEWTEMPLATE').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
+Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
 
   
 	/**
@@ -71,10 +71,10 @@ Y.namespace('M.atto_NEWTEMPLATE').Button = Y.Base.create('button', Y.M.editor_at
         var twoicons = ['iconone', 'icontwo'];
 
         Y.Array.each(twoicons, function(theicon) {
-            // Add the NEWTEMPLATE icon/buttons
+            // Add the streamings icon/buttons
             this.addButton({
                 icon: 'ed/' + theicon,
-                iconComponent: 'atto_NEWTEMPLATE',
+                iconComponent: 'atto_streamings',
                 buttonName: theicon,
                 callback: this._displayDialogue,
                 callbackArgs: theicon
@@ -95,7 +95,7 @@ Y.namespace('M.atto_NEWTEMPLATE').Button = Y.Base.create('button', Y.M.editor_at
     },
 
      /**
-     * Display the NEWTEMPLATE Dialogue
+     * Display the streamings Dialogue
      *
      * @method _displayDialogue
      * @private

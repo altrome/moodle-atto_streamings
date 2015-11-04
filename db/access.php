@@ -17,7 +17,7 @@
 /**
  * Plugin capabilities
  *
- * @package    atto_NEWTEMPLATE
+ * @package    atto_streamings
  * @copyright  COPYRIGHTINFO
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
 
-    'atto/NEWTEMPLATE:visible' => array(
+    'atto/streamings:visible' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => array(

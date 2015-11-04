@@ -1,7 +1,7 @@
 {
-    "name": "moodle-atto_NEWTEMPLATE-button",
+    "name": "moodle-atto_streamings-button",
     "builds": {
-        "moodle-atto_NEWTEMPLATE-button": {
+        "moodle-atto_streamings-button": {
             "jsfiles": [
                 "button.js"
             ]

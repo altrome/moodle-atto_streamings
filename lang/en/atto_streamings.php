@@ -15,16 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'atto_NEWTEMPLATE', language 'en'.
+ * Strings for component 'atto_streamings', language 'en'.
  *
- * @package    atto_NEWTEMPLATE
+ * @package    atto_streamings
  * @copyright  COPYRIGHTINFO
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['createNEWTEMPLATE'] = 'Create NEWTEMPLATE';
-$string['pluginname'] = 'NEWTEMPLATE (Atto)';
-$string['settings'] = 'NEWTEMPLATE (Atto)';
+$string['createstreamings'] = 'Create streamings';
+$string['pluginname'] = 'streamings (Atto)';
+$string['settings'] = 'streamings (Atto)';
 $string['browse'] = 'Browse';
 $string['visible'] = 'Visible';
 $string['nothingtoinsert'] = 'Nothing to insert!';
@@ -33,4 +33,4 @@ $string['insert'] = 'Insert';
 $string['cancel'] = 'Cancel';
 $string['enterflavor'] = 'Enter Ice Cream Flavor';
 $string['defaultflavor'] = 'Default Ice Cream Flavor';
-$string['NEWTEMPLATE:visible'] = 'Visible';
+$string['streamings:visible'] = 'Visible';

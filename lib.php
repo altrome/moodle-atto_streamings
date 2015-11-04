@@ -17,7 +17,7 @@
 /**
  * Atto text editor integration version file.
  *
- * @package    atto_NEWTEMPLATE
+ * @package    atto_streamings
  * @copyright  COPYRIGHTINFO
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,21 +29,21 @@ defined('MOODLE_INTERNAL') || die();
  * Initialise this plugin
  * @param string $elementid
  */
-function atto_NEWTEMPLATE_strings_for_js() {
+function atto_streamings_strings_for_js() {
     global $PAGE;
 
     $PAGE->requires->strings_for_js(array('insert',
                                           'cancel',
                                           'enterflavor',
                                           'dialogtitle'),
-                                    'atto_NEWTEMPLATE');
+                                    'atto_streamings');
 }
 
 /**
  * Return the js params required for this module.
  * @return array of additional params to pass to javascript init function for this module.
  */
-function atto_NEWTEMPLATE_params_for_js($elementid, $options, $fpoptions) {
+function atto_streamings_params_for_js($elementid, $options, $fpoptions) {
 	global $USER, $COURSE;
 	//coursecontext
 	$coursecontext=context_course::instance($COURSE->id);	
@@ -57,7 +57,7 @@ function atto_NEWTEMPLATE_params_for_js($elementid, $options, $fpoptions) {
 	$params['usercontextid'] = $usercontextid;
 
 		//If they don't have permission don't show it
-		if(!has_capability('atto/NEWTEMPLATE:visible', $coursecontext) ){
+		if(!has_capability('atto/streamings:visible', $coursecontext) ){
 			$disabled=true;
 		 }
         
@@ -65,7 +65,7 @@ function atto_NEWTEMPLATE_params_for_js($elementid, $options, $fpoptions) {
         $params['disabled'] = $disabled;
         
         //add our default flavor
-        $params['defaultflavor'] = get_config('atto_NEWTEMPLATE','defaultflavor');
+        $params['defaultflavor'] = get_config('atto_streamings','defaultflavor');
 
     return $params;
 }
