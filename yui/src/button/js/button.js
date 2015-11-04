@@ -250,11 +250,11 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
             Y.log('No web control or value could be found.', 'warn', LOGNAME);
             return;
         }
-        
+        var divId = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 8) + "_video";
         var insert_template =
-            '<div class="videoStream">Video Stream</div>\n' +
+            '<div class="videoStream" id="' + divId + '">Video Stream</div>\n' +
             '<script>\n' +
-                'var playerInstance = jwplayer("videoStream");\n' +
+                'var playerInstance = jwplayer("' + divId + '");\n' +
                 'playerInstance.setup({\n' +
                     'playlist: [{\n' +
                         'sources: [{\n' +
