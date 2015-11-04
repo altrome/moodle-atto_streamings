@@ -69,7 +69,7 @@ var TEMPLATE = '' +
             '<input class="{{CSS.WEBCONTROL}} id="{{elementid}}_{{WEBCONTROL}}" ' +
                 'name="{{elementid}}_{{WEBCONTROL}}" value="{{defaultweb}}" />' +
         '</div>' +
-        '<div align="center">' +
+        '<div align="center" style="margin-top: 15px">' +
             '<button class="{{CSS.INPUTSUBMIT}}">{{get_string "insert" component}}</button>' +
         '</div>' +
     '</form>';
