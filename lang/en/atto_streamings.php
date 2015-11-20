@@ -39,4 +39,6 @@ $string['enterrtmp'] = 'Enter rtmp server';
 $string['defaultrtmp'] = 'Default Cloudfront RTMP Distribution';
 $string['enterweb'] = 'Enter web server';
 $string['defaultweb'] = 'Default Cloufront Web Distribution';
+$string['enterimage'] = 'Enter image file (folder/file.png)';
+$string['defaultimage'] = 'Default image file name (with folder)';
 $string['streamings:visible'] = 'Visible';

@@ -36,6 +36,7 @@ var VIDEOCONTROL = 'streamings_video';
 var RTMPCONTROL = 'streamings_rtmp';
 var PLAYLISTCONTROL = 'streamings_playlist';
 var WEBCONTROL = 'streamings_web';
+var IMAGECONTROL = 'streamings_image';
 var LOGNAME = 'atto_streamings';
 
 var CSS = {
@@ -44,13 +45,15 @@ var CSS = {
         VIDEOCONTROL: 'videocontrol',
         RTMPCONTROL: 'rtmpcontrol',
         PLAYLISTCONTROL: 'playlistcontrol',
-        WEBCONTROL: 'webcontrol'
+        WEBCONTROL: 'webcontrol',
+        IMAGECONTROL: 'imagecontrol'
     },
     SELECTORS = {
         VIDEOCONTROL: '.videocontrol',
         RTMPCONTROL: '.rtmpcontrol',
         PLAYLISTCONTROL: '.playlistcontrol',
-        WEBCONTROL: '.webcontrol'
+        WEBCONTROL: '.webcontrol',
+        IMAGECONTROL: '.imagecontrol'
     };
 
 var TEMPLATE = '' +
@@ -68,6 +71,9 @@ var TEMPLATE = '' +
             '<label for="{{elementid}}_{{WEBCONTROL}}">{{get_string "enterweb" component}}</label>' +
             '<input class="{{CSS.WEBCONTROL}} id="{{elementid}}_{{WEBCONTROL}}" ' +
                 'name="{{elementid}}_{{WEBCONTROL}}" value="{{defaultweb}}" />' +
+            '<label for="{{elementid}}_{{IMAGECONTROL}}">{{get_string "enterimage" component}}</label>' +
+            '<input class="{{CSS.IMAGECONTROL}} id="{{elementid}}_{{IMAGECONTROL}}" ' +
+                'name="{{elementid}}_{{IMAGECONTROL}}" value="{{defaultimage}}" />' +
         '</div>' +
         '<div align="center" style="margin-top: 15px">' +
             '<button class="{{CSS.INPUTSUBMIT}}">{{get_string "insert" component}}</button>' +
@@ -144,7 +150,18 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
      * @private
      */
     _getWebControlName: function(){
-        return(this.get('host').get('elementid') + '_' + PLAYLISTCONTROL);
+        return(this.get('host').get('elementid') + '_' + WEBCONTROL);
+    },
+    
+    /**
+     * Get the id of the image control where we store the ice cream video
+     *
+     * @method _getImageControlName
+     * @return {String} the name/id of the image form field
+     * @private
+     */
+    _getImageControlName: function(){
+        return(this.get('host').get('elementid') + '_' + IMAGECONTROL);
     },
 
      /**
@@ -199,11 +216,13 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
                 RTMPCONTROL: RTMPCONTROL,
                 PLAYLISTCONTROL: PLAYLISTCONTROL,
                 WEBCONTROL: WEBCONTROL,
+                IMAGECONTROL: IMAGECONTROL,
                 component: COMPONENTNAME,
                 defaultvideo: this.get('defaultvideo'),
                 defaultrtmp: this.get('defaultrtmp'),
                 defaultplaylist: this.get('defaultplaylist'),
-                defaultweb: this.get('defaultweb')
+                defaultweb: this.get('defaultweb'),
+                defaultimage: this.get('defaultimage')
             }));
 
         this._form = content;
@@ -226,6 +245,7 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
         var rtmpcontrol = this._form.one(SELECTORS.RTMPCONTROL);
         var playlistcontrol = this._form.one(SELECTORS.PLAYLISTCONTROL);
         var webcontrol = this._form.one(SELECTORS.WEBCONTROL);
+        var imagecontrol = this._form.one(SELECTORS.IMAGECONTROL);
 
         // If no file is there to insert, don't do it.
         if (!videocontrol.get('value')){
@@ -246,7 +266,7 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
         }
         
         // If no file is there to insert, don't do it.
-        if (!webcontrol.get('value')){
+        if (!imagecontrol.get('value')){
             Y.log('No web control or value could be found.', 'warn', LOGNAME);
             return;
         }
@@ -261,16 +281,10 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
                             'file: "' + webcontrol.get('value') + '/' + playlistcontrol.get('value') + '"\n' +
                         '},{\n' +
                             'file: "' + rtmpcontrol.get('value') + '/cfx/st/mp4:' + videocontrol.get('value') + '"\n' +
-                        '}]\n' +
+                        '}],\n' +
+                        'image: "' + webcontrol.get('value') + '/' + imagecontrol.get('value') + '"\n' +
                     '}]\n' +
                 '});\n' +
-                'if (mobileAndTabletcheck()) {\n' +
-                    'playerInstance.setup({\n' +
-                        'width: "100%",\n' +
-                        'stretching: "none",\n' +
-                        'file: "' + webcontrol.get('value') + '/' + playlistcontrol.get('value') + '"\n' +
-                    '});\n' +
-                '}\n' +
             '</script>';
 
         this.editor.focus();
@@ -300,6 +314,10 @@ Y.namespace('M.atto_streamings').Button = Y.Base.create('button', Y.M.editor_att
 		},
 		
 		defaultweb: {
+			value: ''
+		},
+		
+		defaultimage: {
 			value: ''
 		}
 	}

@@ -38,6 +38,7 @@ function atto_streamings_strings_for_js() {
                                           'enterrtmp',
                                           'enterplaylist',
                                           'enterweb',
+                                          'enterimage',
                                           'dialogtitle'),
                                     'atto_streamings');
 }
@@ -78,6 +79,9 @@ function atto_streamings_params_for_js($elementid, $options, $fpoptions) {
         
         //add our default web
         $params['defaultweb'] = get_config('atto_streamings','defaultweb');
+        
+        //add our default image
+        $params['defaultimage'] = get_config('atto_streamings','defaultimage');
 
     return $params;
 }
